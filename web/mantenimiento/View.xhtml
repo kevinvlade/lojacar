@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MantenimientoViewDlg" widgetVar="MantenimientoViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewMantenimientoTitle}">
+            <h:form id="MantenimientoViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{mantenimientoController.selected != null}">
+                        <h:outputText value="#{bundle.ViewMantenimientoLabel_fecha}"/>
+                        <h:outputText value="#{mantenimientoController.selected.fecha}" title="#{bundle.ViewMantenimientoTitle_fecha}"/>
+                        <h:outputText value="#{bundle.ViewMantenimientoLabel_kilometraje}"/>
+                        <h:outputText value="#{mantenimientoController.selected.kilometraje}" title="#{bundle.ViewMantenimientoTitle_kilometraje}"/>
+                        <h:outputText value="#{bundle.ViewMantenimientoLabel_descripcion}"/>
+                        <h:outputText value="#{mantenimientoController.selected.descripcion}" title="#{bundle.ViewMantenimientoTitle_descripcion}"/>
+                        <h:outputText value="#{bundle.ViewMantenimientoLabel_cliente}"/>
+                        <h:outputText value="#{mantenimientoController.selected.cliente}" title="#{bundle.ViewMantenimientoTitle_cliente}"/>
+                        <h:outputText value="#{bundle.ViewMantenimientoLabel_vehiculo}"/>
+                        <h:outputText value="#{mantenimientoController.selected.vehiculo}" title="#{bundle.ViewMantenimientoTitle_vehiculo}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="MantenimientoViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

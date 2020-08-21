@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MantenimientoCreateDlg" widgetVar="MantenimientoCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateMantenimientoTitle}">
+            <h:form id="MantenimientoCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{mantenimientoController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateMantenimientoLabel_fecha}" for="fecha" />
+                        <p:inputText id="fecha" value="#{mantenimientoController.selected.fecha}" title="#{bundle.CreateMantenimientoTitle_fecha}" />
+                        <p:outputLabel value="#{bundle.CreateMantenimientoLabel_kilometraje}" for="kilometraje" />
+                        <p:inputText id="kilometraje" value="#{mantenimientoController.selected.kilometraje}" title="#{bundle.CreateMantenimientoTitle_kilometraje}" />
+                        <p:outputLabel value="#{bundle.CreateMantenimientoLabel_descripcion}" for="descripcion" />
+                        <p:inputText id="descripcion" value="#{mantenimientoController.selected.descripcion}" title="#{bundle.CreateMantenimientoTitle_descripcion}" />
+                        <p:outputLabel value="#{bundle.CreateMantenimientoLabel_cliente}" for="cliente" />
+                        <p:selectOneMenu id="cliente" value="#{mantenimientoController.selected.cliente}" required="true" requiredMessage="#{bundle.EditMantenimientoRequiredMessage_cliente}">
+                            <f:selectItems value="#{clienteController.itemsAvailableSelectOne}"
+                                           var="clienteItem"
+                                           itemValue="#{clienteItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateMantenimientoLabel_vehiculo}" for="vehiculo" />
+                        <p:selectOneMenu id="vehiculo" value="#{mantenimientoController.selected.vehiculo}" required="true" requiredMessage="#{bundle.EditMantenimientoRequiredMessage_vehiculo}">
+                            <f:selectItems value="#{vehiculoController.itemsAvailableSelectOne}"
+                                           var="vehiculoItem"
+                                           itemValue="#{vehiculoItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{mantenimientoController.create}" value="#{bundle.Save}" update="display,:MantenimientoListForm:datalist,:growl" oncomplete="handleSubmit(args,'MantenimientoCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="MantenimientoCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
